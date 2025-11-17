@@ -5,12 +5,12 @@
 
 [main]
 ; (optional) set a project name to be displayed on the website
-; name = "PrivateBin"
+name = ${PRIVATEBIN_PROJECT_NAME}
 
 ; The full URL, with the domain name and directories that point to the
 ; PrivateBin files, including an ending slash (/). This URL is essential to
 ; allow Opengraph images to be displayed on social networks.
-; basepath = "https://privatebin.example.com/"
+basepath = "${PRIVATEBIN_BASEPATH}"
 
 ; enable or disable the discussion feature, defaults to true
 discussion = false
@@ -35,14 +35,25 @@ defaultformatter = "plaintext"
 ; syntaxhighlightingtheme = "sons-of-obsidian"
 
 ; size limit per paste or comment in bytes, defaults to 10 Mebibytes
-sizelimit = 104857600
+sizelimit = ${PRIVATEBIN_SIZE_LIMIT}
+
+templateselection = true
+
+; List of available for selection templates when "templateselection" option is enabled
+availabletemplates[] = "bootstrap5"
+availabletemplates[] = "bootstrap"
+availabletemplates[] = "bootstrap-page"
+availabletemplates[] = "bootstrap-dark"
+availabletemplates[] = "bootstrap-dark-page"
+availabletemplates[] = "bootstrap-compact"
+availabletemplates[] = "bootstrap-compact-page"
 
 ; template to include, default is "bootstrap" (tpl/bootstrap.php)
-template = "bootstrap"
+template = "bootstrap5"
 
 ; (optional) info text to display
 ; use single, instead of double quotes for HTML attributes
-;info = "More information on the <a href='https://privatebin.info/'>project page</a>."
+info = ${PRIVATEBIN_INFOTEXT}
 
 ; (optional) notice to display
 ; notice = "Note: This is a test service: Data may be deleted anytime. Kittens will die if you abuse this service."
@@ -54,7 +65,7 @@ languageselection = false
 
 ; set the language your installs defaults to, defaults to English
 ; if this is set and language selection is disabled, this will be the only language
-; languagedefault = "en"
+languagedefault = "fr"
 
 ; (optional) URL shortener address to offer after a new paste is created.
 ; It is suggested to only use this with self-hosted shorteners as this will leak
@@ -165,12 +176,12 @@ limit = 300
 ; site
 batchsize = 10
 
-;[model]
+[model]
 ; name of data model class to load and directory for storage
 ; the default model "Filesystem" stores everything in the filesystem
-;class = Filesystem
-;[model_options]
-;dir = PATH "data"
+class = Filesystem
+[model_options]
+dir = PATH "data"
 
 ;[model]
 ; example of a Google Cloud Storage configuration
@@ -260,15 +271,3 @@ batchsize = 10
 ; signature = ""
 ; (optional) the URL of the YOURLS API, called to shorten a PrivateBin URL
 ; apiurl = "https://yourls.example.com/yourls-api.php"
-
-
-[model]
-; example of S3 configuration for OVH
-
-class = S3Storage
-[model_options]
-region = "${S3_REGION}"
-version = "latest"
-endpoint = "${S3_ENDPOINT}"
-use_path_style_endpoint = true
-bucket = "${S3_BUCKET}"
