@@ -176,12 +176,12 @@ limit = 300
 ; site
 batchsize = 10
 
-[model]
+; [model]
 ; name of data model class to load and directory for storage
 ; the default model "Filesystem" stores everything in the filesystem
-class = Filesystem
-[model_options]
-dir = PATH "data"
+; class = Filesystem
+; [model_options]
+; dir = PATH "data"
 
 ;[model]
 ; example of a Google Cloud Storage configuration
@@ -254,6 +254,16 @@ dir = PATH "data"
 ;region = "eu-central-1"
 ;version = "latest"
 ;bucket = "my-bucket"
+
+[model]
+class = S3Storage
+[model_options]
+region = "${S3_REGION}"
+version = "latest"
+endpoint = "${S3_ENDPOINT}"
+bucket = "${S3_BUCKET}"
+accesskey = "${S3_ACCESS_KEY_ID}"
+secretkey = "${S3_SECRET_ACCESS_KEY}"
 
 [yourls]
 ; When using YOURLS as a "urlshortener" config item:

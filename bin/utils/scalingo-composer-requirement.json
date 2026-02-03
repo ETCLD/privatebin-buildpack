@@ -14,7 +14,7 @@
       "nginx-includes": [],
       "log-files": [],
       "compile": [
-        "bin/composer require aws/aws-sdk-php"
+        "bin/composer require aws/aws-sdk-php --ignore-platform-reqs"
       ],
       "new-relic": false,
       "access-log-format": ""
