@@ -33,6 +33,7 @@ sed -i 's/\\\\/##/g' "$dest"
 merged=$(jq  -s '.[0] * .[1]' "$src" "$dest")
 echo "$merged" > "$dest"
 sed -i 's/##/\\\\/g' "$dest"
+cat "$dest"
 
 # add custom config files
 
